@@ -1,7 +1,7 @@
 <template>
   <div class="w-full min-h-screen">
     <div class="flex flex-wrap justify-center">
-      <div class="tabs">
+      <div class="tabs justify-center">
         <div>
           <a
             :class="{
@@ -111,7 +111,6 @@ export default {
         .get("http://localhost:3000/cal_type")
         .then((res) => {
           typeData.value = res.data.data;
-          console.log(typeData.value);
         })
         .catch((err) => {
           console.log(err.message);
@@ -126,7 +125,6 @@ export default {
     return {
       tab,
       currentTab,
-      fetchData,
       data,
       typeData,
     };

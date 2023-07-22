@@ -40,6 +40,24 @@ app.get("/all_cal", async (req, res) => {
   });
 });
 
+app.get("/cal_filter/:id", async (req, res) => {
+  let id = req.params.id;
+  let sql = `SELECT * FROM tbl_calendar WHERE cal_type = ${id}`;
+
+  await conn.execute(sql, (err, result) => {
+    if (err) {
+      res.status(500).json({
+        message: err.message,
+      });
+      return;
+    }
+    res.status(200).json({
+      message: true,
+      data: result,
+    });
+  });
+});
+
 app.get("/cal_type", async (req, res) => {
   let sql = "SELECT * FROM tbl_calendar_type";
 
