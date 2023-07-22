@@ -42,7 +42,7 @@ app.get("/all_cal", async (req, res) => {
 
 app.get("/cal_filter/:id", async (req, res) => {
   let id = req.params.id;
-  let sql = `SELECT * FROM tbl_calendar WHERE cal_type = ${id}`;
+  let sql = `SELECT tc.cal_id, tc.cal_name, tc.cal_image, tct.type_name as cal_type, tc.cal_price, tc.cal_is_active FROM tbl_calendar as tc LEFT JOIN tbl_calendar_type as tct ON tct.type_id = tc.cal_id WHERE tc.cal_type = ${id}`;
 
   await conn.execute(sql, (err, result) => {
     if (err) {
